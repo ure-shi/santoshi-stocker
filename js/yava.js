@@ -3,7 +3,7 @@ function hasGetUserMedia() {
 }
 
 var errorCallback = function(e) {
-    console.log('Reeeejected!', e);
+    alert('Reeeejected!', e);
 };
 
 if (hasGetUserMedia()) {
