@@ -69,7 +69,8 @@ body {
     font-weight: 700;
     font-size: 64px;
     color: #fff;
-    width: 100%;
+    width: 20pc;
+    overflow: scroll;
 }
 
 .barcodeNotification h2 {
@@ -79,7 +80,7 @@ body {
     font-size: 32px;
     color: #3a3a3d;
     width: 20pc;
-    word-wrap: break-word;
+    overflow: scroll;
 }
 
 .barcodeType {
