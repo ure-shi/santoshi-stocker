@@ -1,0 +1,361 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap');
+
+body {
+    overflow: hidden;
+}
+
+#cameraStream {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.scan {
+    position: absolute;
+    z-index: 0;
+    bottom: 5em;
+    right: 5em;
+    height: 15em;
+    width: 15em;
+}
+
+.statusBar {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background-color: white;
+}
+
+.barcodeNotification {
+    padding-top: 16px;
+    border-radius: 48px 48px 0 0;
+    position: absolute;
+    display: inline-flex;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 16pc;
+    background-color: #1a1a1d;
+    align-items: center;
+
+    box-shadow: 0 -5px 32px 5px;
+
+    transition: bottom 0.2s ease-in-out;
+}
+
+.barcodeNotification::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 10pc;
+    height: 10px;
+    background-color: #2a2a2d;
+    top: 10px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border-radius: 5px;
+}
+
+.barcodeNotification h1 {
+    margin: 32px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 64px;
+    color: #fff;
+    width: 100%;
+}
+
+.barcodeNotification h2 {
+    margin: 32px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    color: #3a3a3d;
+    width: 20pc;
+    word-wrap: break-word;
+}
+
+.barcodeType {
+    margin-left: 32px;
+    border: 16px solid #fff;
+    border-radius: 16px;
+    height: 10pc;
+    background-color: #fff;
+}
+
+input[type="number"] {
+    position: absolute;
+    right: 32px;
+    left: auto;
+    bottom: calc(48px + 5pc);
+
+    width: 20pc;
+    height: 5pc;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 3px solid #aaa;
+    color: #aaa;
+    border-radius: 16px;
+    box-sizing: border-box;
+    font-size: 32px;
+    background-color: #2a2a2d;
+    outline: none;
+    transition: 0.2s border ease-in-out;
+}
+
+input[type="submit"]#submitForOrder {
+    position: absolute;
+    right: 32px;
+    left: auto;
+    bottom: 32px;
+    width: 20pc;
+
+    background-color: #90EE90;
+}
+
+input[type=number]:focus {
+    border: 3px solid orange;
+}
+
+.addButton {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    right: 32px;
+    height: 10pc;
+}
+
+.barcodeDataContainer {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    height: 40%;
+    width: 100%;
+    background-color: #1a1a1d;
+    transition: top 0.2s ease-in-out;
+}
+
+label {
+    margin: 32px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    color: #fff;
+}
+
+input[type=text] {
+    width: calc(100% - 64px);
+    height: 5pc;
+    padding: 12px 20px;
+    margin: 16px 32px;
+    display: inline-block;
+    border: 3px solid #aaa;
+    color: #aaa;
+    border-radius: 16px;
+    box-sizing: border-box;
+    font-size: 32px;
+    background-color: #2a2a2d;
+    outline: none;
+    transition: 0.2s border ease-in-out;
+}
+
+input[type=text]:focus {
+    border: 3px solid orange;
+}
+
+input[type=submit] {
+    position: absolute;
+    width: calc(50% - 48px);
+    height: 5pc;
+    padding: 12px 20px;
+    display: block;
+    border: 3px solid #1a1a1d;
+    color: #1a1a1d;
+    border-radius: 16px;
+    box-sizing: border-box;
+    font-size: 32px;
+    background-color: #2a2a2d;
+}
+
+#localUpdate {
+    background-color: #90EE90;
+    right: 32px;
+    bottom: 32px;
+}
+
+#databaseUpdate {
+    background-color: #ADD8E6;
+    left: 32px;
+    bottom: 32px;
+}
+
+.accessTokenForm {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1a1a1daa;
+    backdrop-filter: blur(20px);
+    z-index: 5;
+
+    /*display: flex;*/
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.accessTokenForm label {
+    font-size: 48px;
+}
+
+.accessTokenForm section {
+    display: flex;
+}
+
+.accessTokenForm input[type=text] {
+    display: inline-block;
+    position: static;
+    font-size: 32px;
+    margin: 8px 0px;
+    width: 100%;
+    border-radius: 16px 0 0 16px;
+    border-style: solid none solid solid;
+}
+
+.accessTokenForm input[type=submit] {
+    display: inline-block;
+    position: static;
+    margin: 8px 0px;
+    background-color: #ADD8E6;
+    border-radius: 0 16px 16px 0;
+    border: 3px solid #aaa;
+    border-style: solid solid solid none;
+}
+
+.accessTokenForm:has(input[type=text]:focus) input[type=submit] {
+    border: 3px solid orange;
+    border-style: solid solid solid none;
+}
+
+.accessTokenForm .backout {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 32px;
+    border: 3px solid #a00;
+    padding: 1pc;
+    border-radius: 16px;
+    height: 3pc;
+    width: 3pc;
+    background-color: #ff666622;
+}
+
+.loading {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:#1a1a1daa;
+    backdrop-filter: blur(20px);
+}
+
+.loading h1 {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.orderPage {
+    position: absolute;
+    top: 0;
+    left: 30px;
+    transform: translate(-100%, 0);
+    height: 80pc;
+    width: 80%;
+    background-color: #1a1a1d;
+    border-bottom-right-radius: 24px;
+    transition: 0.2s left ease-in-out;
+    box-shadow: 0 -5px 32px 5px;
+}
+
+.orderPage::before {
+    content:"";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translate(0, -50%);
+    height: 10pc;
+    width: 10px;
+    background-color: #2a2a2d;
+    border-radius: 5px;
+}
+
+ul.orderList {
+    list-style-type: none;
+    padding: 0;
+    overflow: scroll;
+    height: 90%;
+}
+
+ul.orderList li {
+    display: flex;
+    justify-content: space-between;
+    background-color: #151517;
+    margin: 16px;
+    margin-right: 26px;
+    padding: 16px;
+    padding-left: 32px;
+    border-radius: 16px;
+    width: 80%;
+}
+
+ul.orderList .liFlex {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+ul.orderList label {
+    margin: 0px;
+    color: #2a2a2d;
+    font-size: 16px;
+}
+
+ul.orderList h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    margin: 0px;
+    color: #fff;
+    width: 100%;
+}
+
+.orderProductName h1 {
+    text-align: left;
+}
+
+.orderProductQuantity h1 {
+    text-align: right;
+    width: 100%;
+}
+
+ul.orderList svg {
+    width: 4pc;
+}

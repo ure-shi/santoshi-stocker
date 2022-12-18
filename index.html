@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="/src/script.js"></script>
+        <link rel="stylesheet" href="/src/style.css">
+    </head>
+    <body>
+        <div class="loadingScreen">
+            <style>
+                .loadingScreen {
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: #1a1a1d;
+                    z-index: 100;
+                }
+                .statusTracker {
+                    position: absolute;
+                    bottom: 10vh;
+                    left: 50%;
+                    width: 50%;
+                    height: 20em;
+                    transform: translate(-50%, 0);
+                }
+                .statusTracker p {
+                    color: #aaa;
+                    font-family: 'consolas';
+                    text-align: center;
+                    font-size: 16px;
+                }
+            </style>
+            <div class="statusTracker">
+                <p id="status">
+                    gathering all the necessary resources (loading)... <br>
+                    loading screen loaded...
+                </p>
+            </div>
+        </div>
+        <video src="" id="cameraStream"></video>
+        <div class="statusBar" id="statusBar"></div>
+        <div class="barcodeNotification" id="_barcodeNotification">
+            <svg class="barcodeType" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 15 15" style="enable-background:new 0 0 15 15;" xml:space="preserve">
+            <style type="text/css">
+                .st0{display:none;}
+                .st1{display:inline;}
+                .st2{font-family:'Consolas-Bold';}
+                .st3{font-size:3px;}
+                .st4{display:inline;fill:none;stroke:#000000;stroke-miterlimit:10;}
+                #unknown{display:block;};
+            </style>
+            <g id="unknown" class="st0">
+                <text transform="matrix(1 0 0 1 1.7268 12.7749)" class="st1 st2 st3">unknown</text>
+                <rect x="10" y="2" class="st1" width="2" height="7"/>
+                <rect x="13.07" y="2" class="st1" width="1.93" height="7"/>
+                <rect x="2" y="5" class="st1" width="1" height="5"/>
+                <polyline class="st1" points="2,5 5,5 5,8 0,8 0,9 6,9 6,10 7,10 7,2 2,2 	"/>
+                <rect x="7" y="7" class="st1" width="1" height="1"/>
+                <rect x="0.5" y="0.5" class="st4" width="6" height="6"/>
+                <rect x="8.5" y="0.5" class="st4" width="6" height="6"/>
+            </g>
+            <g id="upc_e" class="st0">
+                <rect y="1.5" class="st1" width="1" height="8"/>
+                <rect x="2" y="1.5" class="st1" width="1" height="7"/>
+                <rect x="5" y="1.5" class="st1" width="2" height="7"/>
+                <rect x="8" y="1.5" class="st1" width="1" height="7"/>
+                <rect x="10" y="1.5" class="st1" width="2" height="7"/>
+                <rect x="14" y="1.5" class="st1" width="1" height="8"/>
+                <text transform="matrix(1 0 0 1 3.3762 12.7749)" class="st1 st2 st3">upc_e</text>
+            </g>
+            <g id="upc_a" class="st0">
+                <rect y="1.5" class="st1" width="1" height="8"/>
+                <rect x="2" y="1.5" class="st1" width="1" height="7"/>
+                <rect x="5" y="1.5" class="st1" width="2" height="7"/>
+                <rect x="8" y="1.5" class="st1" width="1" height="7"/>
+                <rect x="10" y="1.5" class="st1" width="2" height="7"/>
+                <rect x="14" y="1.5" class="st1" width="1" height="8"/>
+                <text transform="matrix(1 0 0 1 3.3762 12.7749)" class="st1 st2 st3">upc_a</text>
+            </g>
+            <g id="qr_code" class="st0">
+                <rect x="0.5" y="0.5" class="st4" width="6" height="6"/>
+                <rect x="8.5" y="0.5" class="st4" width="6" height="6"/>
+                <rect x="0.5" y="8.5" class="st4" width="6" height="6"/>
+                <rect x="8.5" y="8.5" class="st4" width="4" height="4"/>
+                <rect x="2" y="2" class="st1" width="3" height="3"/>
+                <rect x="2" y="10" class="st1" width="3" height="3"/>
+                <rect x="10" y="2" class="st1" width="3" height="3"/>
+                <rect x="10" y="10" class="st1" width="1" height="1"/>
+                <rect x="14" y="8" class="st1" width="1" height="7"/>
+                <rect x="11" y="11" transform="matrix(6.123234e-17 -1 1 6.123234e-17 -3 26)" class="st1" width="1" height="7"/>
+            </g>
+            <g id="pdf417" class="st0">
+                <rect y="1.5" class="st1" width="1" height="7"/>
+                <rect x="2" y="5" class="st1" width="1" height="3.5"/>
+                <rect x="5" y="1.5" class="st1" width="2" height="7"/>
+                <rect x="8" y="1.5" class="st1" width="1" height="3.5"/>
+                <rect x="10" y="1.5" class="st1" width="2" height="7"/>
+                <rect x="14" y="1.5" class="st1" width="1" height="7"/>
+                <text transform="matrix(1 0 0 1 2.5515 12.7749)" class="st1 st2 st3">pdf417</text>
+                <rect x="2" y="1.5" class="st1" width="2" height="3.5"/>
+                <rect x="8" y="5" class="st1" width="2" height="3.5"/>
+            </g>
+            <g id="itf" class="st0">
+                <rect y="1.5" class="st1" width="1" height="7"/>
+                <rect x="2" y="1.5" class="st1" width="1" height="7"/>
+                <rect x="5" y="1.5" class="st1" width="2" height="7"/>
+                <rect x="8" y="1.5" class="st1" width="1" height="7"/>
+                <rect x="10" y="1.5" class="st1" width="2" height="7"/>
+                <rect x="14" y="1.5" class="st1" width="1" height="7"/>
+                <text transform="matrix(1 0 0 1 5.0256 12.7749)" class="st1 st2 st3">itf</text>
+            </g>
+            <g id="ean_8" class="st0">
+                <rect y="1.5" class="st1" width="1" height="8"/>
+                <rect x="2" y="1.5" class="st1" width="1" height="7"/>
+                <rect x="5" y="1.5" class="st1" width="2" height="7"/>
+                <rect x="8" y="1.5" class="st1" width="1" height="7"/>
+                <rect x="10" y="1.5" class="st1" width="2" height="7"/>
+                <rect x="14" y="1.5" class="st1" width="1" height="8"/>
+                <text transform="matrix(1 0 0 1 3.3762 12.7749)" class="st1 st2 st3">ean_8</text>
+            </g>
+            <g id="ean_13" class="st0">
+                <rect y="1.5" class="st1" width="1" height="8"/>
+                <rect x="2" y="1.5" class="st1" width="1" height="7"/>
+                <rect x="5" y="1.5" class="st1" width="2" height="7"/>
+                <rect x="8" y="1.5" class="st1" width="1" height="7"/>
+                <rect x="10" y="1.5" class="st1" width="2" height="7"/>
+                <rect x="14" y="1.5" class="st1" width="1" height="8"/>
+                <text transform="matrix(1 0 0 1 2.5515 12.7749)" class="st1 st2 st3">ean_13</text>
+            </g>
+            <g id="data_matrix" class="st0">
+                <polygon class="st1" points="0,0 1,0 1,14 15,14 15,15 0,15 	"/>
+                <polygon class="st1" points="1,1 3,1 3,2 2,2 2,0 1,0 	"/>
+                <polygon class="st1" points="3,3 5,3 5,4 4,4 4,2 3,2 	"/>
+                <polygon class="st1" points="5,5 7,5 7,6 6,6 6,4 5,4 	"/>
+                <polygon class="st1" points="1,3 3,3 3,4 2,4 2,2 1,2 	"/>
+                <polygon class="st1" points="1,5 3,5 3,6 2,6 2,4 1,4 	"/>
+                <polygon class="st1" points="3,5 5,5 5,6 4,6 4,4 3,4 	"/>
+                <polygon class="st1" points="5,3 7,3 7,4 6,4 6,2 5,2 	"/>
+                <polygon class="st1" points="3,1 5,1 5,2 4,2 4,0 3,0 	"/>
+                <polygon class="st1" points="5,1 7,1 7,2 6,2 6,0 5,0 	"/>
+                <polygon class="st1" points="7,1 9,1 9,2 8,2 8,0 7,0 	"/>
+                <polygon class="st1" points="9,3 11,3 11,4 10,4 10,2 9,2 	"/>
+                <polygon class="st1" points="11,5 13,5 13,6 12,6 12,4 11,4 	"/>
+                <polygon class="st1" points="7,3 9,3 9,4 8,4 8,2 7,2 	"/>
+                <polygon class="st1" points="7,5 9,5 9,6 8,6 8,4 7,4 	"/>
+                <polygon class="st1" points="9,5 11,5 11,6 10,6 10,4 9,4 	"/>
+                <polygon class="st1" points="11,3 13,3 13,4 12,4 12,2 11,2 	"/>
+                <polygon class="st1" points="9,1 11,1 11,2 10,2 10,0 9,0 	"/>
+                <polygon class="st1" points="11,1 13,1 13,2 12,2 12,0 11,0 	"/>
+                <polygon class="st1" points="1,7 3,7 3,8 2,8 2,6 1,6 	"/>
+                <polygon class="st1" points="3,9 5,9 5,10 4,10 4,8 3,8 	"/>
+                <polygon class="st1" points="5,11 7,11 7,12 6,12 6,10 5,10 	"/>
+                <polygon class="st1" points="1,9 3,9 3,10 2,10 2,8 1,8 	"/>
+                <polygon class="st1" points="1,11 3,11 3,12 2,12 2,10 1,10 	"/>
+                <polygon class="st1" points="3,11 5,11 5,12 4,12 4,10 3,10 	"/>
+                <polygon class="st1" points="5,9 7,9 7,10 6,10 6,8 5,8 	"/>
+                <polygon class="st1" points="3,7 5,7 5,8 4,8 4,6 3,6 	"/>
+                <polygon class="st1" points="5,7 7,7 7,8 6,8 6,6 5,6 	"/>
+                <polygon class="st1" points="7,7 9,7 9,8 8,8 8,6 7,6 	"/>
+                <polygon class="st1" points="9,9 11,9 11,10 10,10 10,8 9,8 	"/>
+                <polygon class="st1" points="11,11 13,11 13,12 12,12 12,10 11,10 	"/>
+                <polygon class="st1" points="7,9 9,9 9,10 8,10 8,8 7,8 	"/>
+                <polygon class="st1" points="7,11 9,11 9,12 8,12 8,10 7,10 	"/>
+                <polygon class="st1" points="9,11 11,11 11,12 10,12 10,10 9,10 	"/>
+                <polygon class="st1" points="11,9 13,9 13,10 12,10 12,8 11,8 	"/>
+                <polygon class="st1" points="9,7 11,7 11,8 10,8 10,6 9,6 	"/>
+                <polygon class="st1" points="11,7 13,7 13,8 12,8 12,6 11,6 	"/>
+                <polygon class="st1" points="5,13 7,13 7,14 6,14 6,12 5,12 	"/>
+                <polygon class="st1" points="1,13 3,13 3,14 2,14 2,12 1,12 	"/>
+                <polygon class="st1" points="3,13 5,13 5,14 4,14 4,12 3,12 	"/>
+                <polygon class="st1" points="11,13 13,13 13,14 12,14 12,12 11,12 	"/>
+                <polygon class="st1" points="7,13 9,13 9,14 8,14 8,12 7,12 	"/>
+                <polygon class="st1" points="9,13 11,13 11,14 10,14 10,12 9,12 	"/>
+                <polygon class="st1" points="13,5 15,5 15,6 14,6 14,4 13,4 	"/>
+                <polygon class="st1" points="13,3 15,3 15,4 14,4 14,2 13,2 	"/>
+                <polygon class="st1" points="13,1 15,1 15,2 14,2 14,0 13,0 	"/>
+                <polygon class="st1" points="13,11 15,11 15,12 14,12 14,10 13,10 	"/>
+                <polygon class="st1" points="13,9 15,9 15,10 14,10 14,8 13,8 	"/>
+                <polygon class="st1" points="13,7 15,7 15,8 14,8 14,6 13,6 	"/>
+                <polygon class="st1" points="13,13 15,13 15,14 14,14 14,12 13,12 	"/>
+            </g>
+            <g id="codabar" class="st0">
+                <rect y="1.5" class="st1" width="1" height="7"/>
+                <rect x="2" y="1.5" class="st1" width="1" height="7"/>
+                <rect x="5" y="1.5" class="st1" width="2" height="7"/>
+                <rect x="8" y="1.5" class="st1" width="1" height="7"/>
+                <rect x="10" y="1.5" class="st1" width="2" height="7"/>
+                <rect x="14" y="1.5" class="st1" width="1" height="7"/>
+                <text transform="matrix(1 0 0 1 1.7268 12.7749)" class="st1 st2 st3">codabar</text>
+            </g>
+            <g id="code_93" class="st0">
+                <rect y="1.5" class="st1" width="1" height="7"/>
+                <rect x="2" y="1.5" class="st1" width="1" height="7"/>
+                <rect x="5" y="1.5" class="st1" width="2" height="7"/>
+                <rect x="8" y="1.5" class="st1" width="1" height="7"/>
+                <rect x="10" y="1.5" class="st1" width="2" height="7"/>
+                <rect x="14" y="1.5" class="st1" width="1" height="7"/>
+                <text transform="matrix(1 0 0 1 1.7268 12.7749)" class="st1 st2 st3">code_93</text>
+            </g>
+            <g id="code_39" class="st0">
+                <rect y="1.5" class="st1" width="1" height="7"/>
+                <rect x="2" y="1.5" class="st1" width="1" height="7"/>
+                <rect x="5" y="1.5" class="st1" width="2" height="7"/>
+                <rect x="8" y="1.5" class="st1" width="1" height="7"/>
+                <rect x="10" y="1.5" class="st1" width="2" height="7"/>
+                <rect x="14" y="1.5" class="st1" width="1" height="7"/>
+                <text transform="matrix(1 0 0 1 1.7268 12.7749)" class="st1 st2 st3">code_39</text>
+            </g>
+            <g id="code_128" class="st0">
+                <rect y="1.5" class="st1" width="1" height="7"/>
+                <rect x="2" y="1.5" class="st1" width="1" height="7"/>
+                <rect x="5" y="1.5" class="st1" width="2" height="7"/>
+                <rect x="8" y="1.5" class="st1" width="1" height="7"/>
+                <rect x="10" y="1.5" class="st1" width="2" height="7"/>
+                <rect x="14" y="1.5" class="st1" width="1" height="7"/>
+                <text transform="matrix(1 0 0 1 0.9021 12.7749)" class="st1 st2 st3">code_128</text>
+            </g>
+            <g id="aztec" class="st0">
+                <rect x="7" y="7" class="st1" width="1" height="1"/>
+                <rect x="0.5" y="0.5" class="st4" width="14" height="14"/>
+                <rect x="2.5" y="2.5" class="st4" width="10" height="10"/>
+            </g>
+            </svg>
+            <div>
+                <h1 id="barcodeName">ABC</h1>
+                <h2 id="barcodeRawValue">ABC-abc-1234</h1>
+            </div>
+            <input type="number" id="inQuantity" value="1" min="1">
+            <input type="submit" id="submitForOrder" value="Add" onclick="addItemToOrder()">
+        </div>
+        <div class="barcodeDataContainer" id="_barcodeDataContainer">
+            <label for="barcodeDataName">Name</label>
+            <input type="text" id="barcodeDataName" placeholder="Product Name">
+
+            <label for="barcodeDataPrice">Price</label>
+            <input type="text" id="barcodeDataPrice" placeholder="0.00">
+
+            <label for="barcodeDataRaw">Raw Barcode Data</label>
+            <input type="text" id="barcodeDataRaw" value="Barcode Data">
+          
+            <input type="submit" id="localUpdate" value="Update Locally" onclick="updateStockArray(document.getElementById('barcodeDataName').value, document.getElementById('barcodeDataPrice').value, document.getElementById('barcodeDataRaw').value)">
+            <input type="submit" id="databaseUpdate" value="Update Database" onclick="putStockArray()">
+        </div>
+        <div class="accessTokenForm" id="_accessTokenForm">
+            <svg onclick="cancelDatabaseAT()" class="backout" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                viewBox="0 0 10 10" style="enable-background:new 0 0 10 10;" xml:space="preserve">
+            <style type="text/css">
+                .lst0{fill:none;stroke:#a00;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+            </style>
+            <g>
+                <polyline class="lst0" points="4.5,1 2.5,5 4.5,9 	"/>
+                <polyline class="lst0" points="7.5,1 5.5,5 7.5,9 	"/>
+            </g>
+            </svg>
+            <label for="accessToken">Database Access Token</label>
+            <section>
+                <input type="text" id="accessToken" placeholder="Access Token">
+                <input type="submit" value="Update Database" onclick="submitAccessToken()">
+            </section>
+        </div>
+        <div class="loading" id="_loading">
+            <h1>loading...</h1>
+        </div>
+        <div class="orderPage" id="_orderPage">
+            <ul class="orderList" id="_orderList">
+                <li id="0"><div class="liFlex"><div class="orderProductName"><label for="orderProductName">Product Name</label><h1 id="orderProductName">ABC</h1></div><div class="orderProductQuantity"><label for="orderProductQuantity">Quantity</label><h1 id="orderProductQuantity">5</h1></div></div><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"viewBox="0 0 10 10" style="enable-background:new 0 0 10 10;" xml:space="preserve"><style type="text/css">.ost0{fill:#AA003AAA;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}.ost1{fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}</style><g id="background"><path class="ost0" d="M8,9.5H2C1.17,9.5,0.5,8.83,0.5,8V2c0-0.83,0.67-1.5,1.5-1.5h6c0.83,0,1.5,0.67,1.5,1.5v6C9.5,8.83,8.83,9.5,8,9.5z"/></g><g id="cross"><line class="ost1" x1="3.23" y1="3.23" x2="6.77" y2="6.77"/><line class="ost1" x1="3.23" y1="6.77" x2="6.77" y2="3.23"/></g></svg></li>
+            </ul>
+        </div>
+    </body>
+</html>
